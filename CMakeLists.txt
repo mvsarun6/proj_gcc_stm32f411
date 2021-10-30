@@ -47,11 +47,11 @@ INCLUDE_DIRECTORIES(${CMSISDIR}/Device/ST/STM32F4xx/Include)
 add_executable(${PROJECTNAME}
     ${CMSISDIR}/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f411xe.s
     ${CMSISDIR}/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
+    ${CMAKE_SOURCE_DIR}/src/enter_cpp.cpp
     ${CMAKE_SOURCE_DIR}/src/main.c)
 
 add_custom_command(TARGET ${PROJECTNAME} POST_BUILD COMMAND ${ARMTOOLPATH}/bin/arm-none-eabi-size $<TARGET_FILE:${PROJECTNAME}>
                                                    COMMAND ${ARMTOOLPATH}/bin/arm-none-eabi-objcopy -O binary -R .eeprom $<TARGET_FILE:${PROJECTNAME}> $<TARGET_FILE:${PROJECTNAME}>.bin
                                                    COMMAND ${ARMTOOLPATH}/bin/arm-none-eabi-objcopy -O srec -R .eeprom $<TARGET_FILE:${PROJECTNAME}> $<TARGET_FILE:${PROJECTNAME}>.srec
-                                                   COMMAND ${ARMTOOLPATH}/bin/arm-none-eabi-objcopy -O elf -R .eeprom $<TARGET_FILE:${PROJECTNAME}> $<TARGET_FILE:${PROJECTNAME}>.elf
                                                    COMMAND ${ARMTOOLPATH}/bin/arm-none-eabi-objcopy -O ihex -R .eeprom $<TARGET_FILE:${PROJECTNAME}> $<TARGET_FILE:${PROJECTNAME}>.ihex
                                                    COMMAND ${ARMTOOLPATH}/bin/arm-none-eabi-objdump -x -d $<TARGET_FILE:${PROJECTNAME}> >$<TARGET_FILE:${PROJECTNAME}>.lst)
