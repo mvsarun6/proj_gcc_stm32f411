@@ -1,0 +1,3 @@
+Actual Path : github\STM32CubeF4\Drivers\CMSIS (v5.4.0)
+              git id : https://github.com/STMicroelectronics/STM32CubeF4.git
+              commit# : 4aba24d78fef03d797a82b258f37dbc84728bbb5 
